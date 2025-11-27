@@ -9,4 +9,9 @@ public class Movimentacao {
         this.valor = valor;
     }
 
+    public Long getIdMovimentacao() {return idMovimentacao;}
+    public double getValor() {return valor;}
+
+    public void setIdMovimentacao (Long idMovimentacao) {this.idMovimentacao = idMovimentacao;}
+    public void setValor (double valor) {this.valor = valor;}
 }
