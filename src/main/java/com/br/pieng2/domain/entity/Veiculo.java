@@ -16,4 +16,16 @@ public class Veiculo {
         this.anoFabricacao = anoFabricacao;
         this.veiculoAtivo = veiculoAtivo;
     }
+
+    public Long getIdVeiculo() {return idVeiculo;}
+    public String getPlaca() {return placa;}
+    public String getMarca() {return marca;}
+    public LocalDate getAnoFabricacao() {return anoFabricacao;}
+    public boolean getVeiculoAtivo() {return veiculoAtivo;}
+
+    public void setIdVeiculo (Long idVeiculo) {this.idVeiculo = idVeiculo;}
+    public void setPlaca (String placa) {this.placa = placa;}
+    public void setMarca (String marca) {this.marca = marca;}
+    public void setAnoFabricacao (LocalDate anoFabricacao) {this.anoFabricacao = anoFabricacao;}
+    public void setVeiculoAtivo (boolean veiculoAtivo) {this.veiculoAtivo = veiculoAtivo;}
 }
