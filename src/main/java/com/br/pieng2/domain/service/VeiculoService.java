@@ -27,17 +27,17 @@ public class VeiculoService {
             throw new Exception("Ano de fabricação invalido");
         }
 
-        for (Veiculo v : dao.listarTodos()) {
+        for (Veiculo v : dao.listar()) {
             if (v.getPlaca().equalsIgnoreCase(placa)) {
                 throw new Exception("Já existe um veículo com essa placa.");
             }
         }
 
-        Veiculo veiculo = new Veiculo(placa.trim(), marca.trim(), modelo.trim(), dao.salvar(veiculo);
+        Veiculo veiculo = new Veiculo(placa.trim(), marca.trim(), modelo.trim(), dao.salvar(veiculo));
     }
 
     public List<Veiculo> listarTodos() {
-        return dao.listarTodos();
+        return dao.listar();
     }
 
     public Veiculo buscarPorPlaca(String placa) throws Exception {
@@ -45,7 +45,7 @@ public class VeiculoService {
             throw new Exception("Informe uma placa válida.");
         }
 
-        for (Veiculo v : dao.listarTodos()) {
+        for (Veiculo v : dao.listar()) {
             if (v.getPlaca().equalsIgnoreCase(placa)) {
                 return v;
             }
@@ -67,6 +67,6 @@ public class VeiculoService {
             throw new Exception("Informe uma placa para remover.");
         }
 
-        dao.remover(placa);
+        dao.remover(Integer.parseInt(placa));
     }
 }
