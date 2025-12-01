@@ -1,6 +1,7 @@
 package com.br.pieng2.domain.dao;
 
 import com.br.pieng2.domain.model.Despesa;
+import com.br.pieng2.domain.model.Veiculo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +10,20 @@ public class DespesaDAO extends BaseDAO<Despesa>{
 
     private final String ARQUIVO = "despesa.txt";
 
+    private int gerarNovoId() {
+        int maior = 0;
+
+        for (Despesa td : listar()) {
+            if (td.getIdTipoDespesa() > maior) {
+                maior = td.getIdTipoDespesa();
+            }
+        }
+
+        return maior + 1;
+    }
+
     public void salvar(Despesa td) {
+        td.setIdTipoDespesa(gerarNovoId());
         List<Despesa> lista = listar();
         lista.add(td);
         gravarArquivo(ARQUIVO, lista);

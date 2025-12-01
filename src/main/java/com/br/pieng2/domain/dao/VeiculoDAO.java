@@ -1,5 +1,6 @@
 package com.br.pieng2.domain.dao;
 
+import com.br.pieng2.domain.model.Movimentacao;
 import com.br.pieng2.domain.model.Veiculo;
 
 import java.util.ArrayList;
@@ -9,7 +10,20 @@ public class VeiculoDAO extends BaseDAO<Veiculo>{
 
     private final String ARQUIVO = "veiculos.txt";
 
+    private int gerarNovoId() {
+        int maior = 0;
+
+        for (Veiculo v : listar()) {
+            if (v.getIdVeiculo() > maior) {
+                maior = v.getIdVeiculo();
+            }
+        }
+
+        return maior + 1;
+    }
+
     public void salvar(Veiculo v) {
+        v.setIdVeiculo(gerarNovoId());
         List<Veiculo> lista = listar();
         lista.add(v);
         gravarArquivo(ARQUIVO, lista);

@@ -9,7 +9,22 @@ public class MovimentacaoDAO extends BaseDAO<Movimentacao>{
 
     private final String ARQUIVO = "movimentacao.txt";
 
+    private int gerarNovoId() {
+        int maior = 0;
+
+        for (Movimentacao m : listar()) {
+            if (m.getIdMovimentacao() > maior) {
+                maior = m.getIdMovimentacao();
+            }
+        }
+
+        return maior + 1;
+    }
+
     public void salvar(Movimentacao m) {
+        m.setIdMovimentacao(gerarNovoId());
+        m.setIdTipoDespesa(gerarNovoId());
+        m.setIdVeiculo(gerarNovoId());
         List<Movimentacao> lista = listar();
         lista.add(m);
         gravarArquivo(ARQUIVO, lista);
