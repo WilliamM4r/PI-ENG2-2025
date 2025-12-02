@@ -60,9 +60,10 @@ public class MovimentacaoDAO extends BaseDAO<Movimentacao>{
         gravarArquivo(ARQUIVO, lista);
     }
 
-    public  void remover(int id) {
+    public void remover(int id) {
         List<Movimentacao> lista = listar();
         lista.removeIf(m -> m.getIdMovimentacao() == id);
         gravarArquivo(ARQUIVO, lista);
     }
+
 }

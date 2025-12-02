@@ -2,6 +2,7 @@ package com.br.pieng2.domain.dao;
 
 import com.br.pieng2.domain.model.Movimentacao;
 import com.br.pieng2.domain.model.Veiculo;
+import com.br.pieng2.domain.util.PersistenciaArquivo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,4 +63,5 @@ public class VeiculoDAO extends BaseDAO<Veiculo>{
         lista.removeIf(v -> v.getIdVeiculo() == id);
         gravarArquivo(ARQUIVO, lista);
     }
+
 }
