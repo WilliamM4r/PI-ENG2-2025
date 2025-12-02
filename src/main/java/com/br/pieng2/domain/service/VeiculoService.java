@@ -33,7 +33,8 @@ public class VeiculoService {
             }
         }
 
-        Veiculo veiculo = new Veiculo(placa.trim(), marca.trim(), modelo.trim(), dao.salvar(veiculo));
+        Veiculo veiculo = new Veiculo(placa.trim(), marca.trim(), modelo.trim());
+        dao.salvar(veiculo);
     }
 
     public List<Veiculo> listarTodos() {

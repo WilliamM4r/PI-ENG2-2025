@@ -15,7 +15,7 @@ import java.util.*;
 public class RelatorioService {
 
     private MovimentacaoDAO movimentacaoDAO;
-    private VeiculoDAO veiculoDAO;
+    private VeiculoDAO veiculoDAO = new VeiculoDAO();
     private DespesaDAO despesaDAO;
 
     public RelatorioService() {
@@ -29,7 +29,10 @@ public class RelatorioService {
     public double calcularDespesasPorVeiculo(String placa) {
         double total = 0;
         for (Movimentacao mov : movimentacaoDAO.listar()) {
-            if (mov.getIdVeiculo().equalsIgnoreCase(placa)) {
+
+            Veiculo v = veiculoDAO.buscar(mov.getIdVeiculo());
+
+            if (v != null && v.getPlaca().equalsIgnoreCase(placa)) {
                 total += mov.getValor();
             }
         }
@@ -41,7 +44,7 @@ public class RelatorioService {
         double total = 0;
 
         for (Movimentacao mov : movimentacaoDAO.listar()) {
-            LocalDate data = LocalDate.parse(mov.getData(), formatter);
+            LocalDate data = mov.getData();
 
             if (data.getMonthValue() == mes && data.getYear() == ano) {
                 total += mov.getValor();
@@ -74,7 +77,7 @@ public class RelatorioService {
 
             if (tipo != null && tipo.getDescricao().equalsIgnoreCase("IPVA")) {
 
-                LocalDate data = LocalDate.parse(mov.getData(), formatter);
+                LocalDate data = mov.getData();
 
                 if (data.getYear() == ano) {
                     total += mov.getValor();
@@ -106,18 +109,18 @@ public class RelatorioService {
 
             Despesa tipo = despesaDAO.buscar(mov.getIdTipoDespesa());
 
-                if (tipo != null && tipo.getDescricao().toLowerCase().contains("multa")) {
+            if (tipo != null && tipo.getDescricao().toLowerCase().contains("multa")) {
 
-                    LocalDate data = LocalDate.parse(mov.getData(), formatter);
+                LocalDate data = mov.getData();
 
-                    if (data.getYear() == ano) {
-                        total += mov.getValor();
-                    }
+                if (data.getYear() == ano) {
+                    total += mov.getValor();
                 }
             }
-
-            return total;
         }
+
+        return total;
+    }
 
     public int contarEntregas() {
 
@@ -149,8 +152,10 @@ public class RelatorioService {
                 mapa.put(descricao, mapa.getOrDefault(descricao, 0.0) + mov.getValor());
             }
 
-            return mapa;
         }
+        return mapa;
     }
 }
+
+
 

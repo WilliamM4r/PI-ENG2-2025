@@ -8,15 +8,17 @@ public class Veiculo {
     private String marca;
     private String modelo;
     private int anoFabricacao;
-    private boolean veiculoAtivo;
+    private boolean ativo;
 
-    public Veiculo(int idVeiculo,String modelo, String placa, String marca, int anoFabricacao, boolean veiculoAtivo) {
+    public boolean isAtivo() { return ativo; }
+
+    public Veiculo(int idVeiculo,String modelo, String placa, String marca, int anoFabricacao, boolean ativo) {
         this.idVeiculo = idVeiculo;
         this.placa = placa;
         this.marca = marca;
         this.modelo = modelo;
         this.anoFabricacao = anoFabricacao;
-        this.veiculoAtivo = veiculoAtivo;
+        this.ativo = ativo;
     }
 
     public int getIdVeiculo() {return idVeiculo;}
@@ -24,18 +26,18 @@ public class Veiculo {
     public String getMarca() {return marca;}
     public String getModelo() {return modelo;}
     public int getAnoFabricacao() {return anoFabricacao;}
-    public boolean getVeiculoAtivo() {return veiculoAtivo;}
+    public boolean getAtivo() {return ativo;}
 
     public void setIdVeiculo (int idVeiculo) {this.idVeiculo = idVeiculo;}
     public void setPlaca (String placa) {this.placa = placa;}
     public void setMarca (String marca) {this.marca = marca;}
     public void setModelo (String modelo) {this.modelo = modelo;}
     public void setAnoFabricacao (int anoFabricacao) {this.anoFabricacao = anoFabricacao;}
-    public void setVeiculoAtivo (boolean veiculoAtivo) {this.veiculoAtivo = veiculoAtivo;}
+    public void setAtivo (boolean ativo) {this.ativo = ativo;}
 
     @Override
     public String toString() {
-        return idVeiculo + ";" + placa + ";" + marca + ";" + modelo + ";" + anoFabricacao + ";" + veiculoAtivo;
+        return idVeiculo + ";" + placa + ";" + marca + ";" + modelo + ";" + anoFabricacao + ";" + ativo;
     }
 
     public  static Veiculo fromString(String linha) {
